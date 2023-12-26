@@ -1,16 +1,18 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {RootState} from '../../app/store';
 import {ApiFoodItems} from '../../types';
-import {fetchDataItems} from './foodItemsThunks';
+import {createDataItem, fetchDataItems} from './foodItemsThunks';
 
 interface foodItemsState {
   foodItems: ApiFoodItems[];
   fetchFoodItemsLoading: boolean;
+  fetchCreateFoodLoading: boolean;
 }
 
 const initialState: foodItemsState = {
   foodItems: [],
   fetchFoodItemsLoading: false,
+  fetchCreateFoodLoading: false,
 };
 
 const foodItemsSlice = createSlice({
@@ -32,11 +34,20 @@ const foodItemsSlice = createSlice({
     builder.addCase(fetchDataItems.rejected, (state: foodItemsState) => {
       state.fetchFoodItemsLoading = false;
     });
+    builder.addCase(createDataItem.pending, (state: foodItemsState) => {
+      state.fetchCreateFoodLoading = true;
+    });
+    builder.addCase(createDataItem.fulfilled, (state: foodItemsState) => {
+      state.fetchCreateFoodLoading = false;
+    });
+    builder.addCase(createDataItem.rejected, (state: foodItemsState) => {
+      state.fetchCreateFoodLoading = false;
+    });
   }
 });
 
 export const foodItemReducer = foodItemsSlice.reducer;
 export const selectFoodItemList = (state: RootState) => state.foodItems.foodItems;
 
-
+export const selectCreateFoodLoading = (state: RootState) => state.foodItems.fetchCreateFoodLoading;
 export const selectFoodItemsLoading = (state: RootState) => state.foodItems.fetchFoodItemsLoading;

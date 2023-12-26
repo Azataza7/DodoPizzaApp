@@ -3,4 +3,140 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  background-color: #f8f9fa;
+  color: #242424;
+}
+
+.food-catalog {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.food-item {
+  position: relative;
+  width: 250px;
+  height: 260px;
+  z-index: 1;
+  transition: transform 0.4s ease;
+}
+
+.food-item:hover {
+  transform: scale(1.01);
+}
+
+.food-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 230px;
+  height: 230px;
+  z-index: -1;
+  border-radius: 50%;
+}
+
+.food-price {
+  position: absolute;
+  top: 1%;
+  right: 1%;
+  padding: 4px;
+  border: 1px solid green;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+
+  background-color: green;
+  color: #FFFFFF;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.food-item:hover .food-price {
+  top: 0;
+  right: 0;
+  transition: transform 1.8s ease-in-out;
+}
+
+.food-title {
+  font-size: 20px;
+  font-weight: 600;
+
+  position: absolute;
+  bottom: 1%;
+  left: 4%;
+}
+
+.food-item:hover .food-title {
+  bottom: 0;
+  left: 4%;
+  transition: transform 1.8s ease-in-out;
+}
+
+.edit-button {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background: url("./images/edit.svg") no-repeat center;
+}
+
+.delete-button {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background: url("./images/trash.svg") no-repeat center;
+  border: none;
+  cursor: pointer;
+}
+
+.button-container {
+  max-width: 90px;
+  margin-left: 10px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+
+  position: absolute;
+  bottom: 22%;
+  right: 3%;
+}
+
+.food-item:hover .button-container {
+  bottom: 21%;
+  right: 2%;
+  transition: transform 0.8s ease-in-out;
+}
+
+.add-button {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background: url("./images/add_icon.svg") no-repeat top 0 left -1px;
+  border: 1px solid #242424;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.header {
+  background-color: orange;
+  opacity: 0.8;
+}
+
+.logo-container {
+  padding: 10px 10px 10px 30px;
+  background: url("./images/dodo-logo.svg") no-repeat top 0 left -5px;
+}
+
+.add-new-foodItem-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.preloader {
+  position: absolute;
+  top: 46%;
+  left: 46%;
+  padding: 30px;
 }
