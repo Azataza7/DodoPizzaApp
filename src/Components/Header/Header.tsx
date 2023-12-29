@@ -20,10 +20,7 @@ const Header = () => {
               <Link to={isAdminPath ? '/admin/' : '/'} className="nav-link" href="#">Catalog</Link>
             </li>
             <li className="nav-item">
-              <Link
-                to={isAdminPath ? '/admin/orders' : '/cart'}
-                className="nav-link"
-              >
+              <Link to={isAdminPath ? '/admin/orders' : '/cart'} className="nav-link">
                 {isAdminPath ? 'Orders' : 'Cart'}
               </Link>
             </li>

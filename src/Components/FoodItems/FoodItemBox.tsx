@@ -4,6 +4,7 @@ import {Link, useLocation} from 'react-router-dom';
 import {useAppDispatch, useAppSelector} from '../../app/hooks';
 import {selectDeleteFoodItemLoading} from '../../store/foodItems/foodItemsSlice';
 import {deleteFoodItem, fetchDataItems} from '../../store/foodItems/foodItemsThunks';
+import {addDish} from '../../store/cart/cartSlice';
 
 interface Props {
   foodItem: ApiFoodItems;
@@ -26,6 +27,11 @@ const FoodItemBox: React.FC<Props> = ({foodItem}) => {
   };
 
   const imageUrl = isImageValid(foodItem.image) ? foodItem.image : DefaultImage;
+
+  const addDishToCart = () => {
+    dispatch(addDish(foodItem));
+  }
+
 
   const handleDelete = async () => {
     try {
@@ -57,7 +63,7 @@ const FoodItemBox: React.FC<Props> = ({foodItem}) => {
             />
           </>
         )}
-        {!isAdminPath && <button className="add-button btn" disabled={isLoadingDelete}/>}
+        {!isAdminPath && <button className="add-button btn" onClick={addDishToCart} disabled={isLoadingDelete}/>}
       </div>
     </div>
   );

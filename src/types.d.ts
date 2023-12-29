@@ -14,3 +14,8 @@ export interface FoodItemsJson {
 export interface FoodItemsResponse {
   data: FoodItemsJson[FoodItemsJson];
 }
+
+export interface CartFoodItem {
+  foodItem: ApiFoodItems;
+  amount: number;
+}

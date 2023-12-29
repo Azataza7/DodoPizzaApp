@@ -3,7 +3,7 @@ import FoodItemsForm from '../../Components/FoodItemsForm/FoodItemsForm';
 import {useNavigate, useParams} from 'react-router-dom';
 import {useAppDispatch, useAppSelector} from '../../app/hooks';
 import {
-  selectFoodItem, selectOneFoodItemLoading, selectUpdateFoodItemLoading,
+  selectFoodItem, selectOneFoodItemLoading,
 } from '../../store/foodItems/foodItemsSlice';
 import {fetchDataItems, fetchOneFoodItem, updateFoodItem} from '../../store/foodItems/foodItemsThunks';
 import Spinner from '../../Components/Spinner/Spinner';

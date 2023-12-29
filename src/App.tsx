@@ -4,6 +4,7 @@ import HomePage from './Containers/HomePage/HomePage';
 import Header from './Components/Header/Header';
 import NewFoodItem from './Containers/NewFoodItem/NewFoodItem';
 import EditFoodItem from './Containers/EditFoodItem/EditFoodItem';
+import Cart from './Components/Cart/Cart';
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
           <h1 className="not-found-alert">Not found</h1>
         )}/>
         <Route path="/" element={(<HomePage/>)}/>
+        <Route path="/cart" element={(<Cart/>)}/>
       </Routes>
     </>
   );
