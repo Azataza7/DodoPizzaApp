@@ -1,6 +1,6 @@
 import React from 'react';
 import {ApiFoodItems} from '../../types';
-import {Link} from 'react-router-dom';
+import {Link, useLocation} from 'react-router-dom';
 import {useAppDispatch, useAppSelector} from '../../app/hooks';
 import {selectDeleteFoodItemLoading} from '../../store/foodItems/foodItemsSlice';
 import {deleteFoodItem, fetchDataItems} from '../../store/foodItems/foodItemsThunks';
@@ -14,6 +14,10 @@ const DefaultImage = 'https://thumbs.dreamstime.com/b/no-pizza-icon-outline-no-p
 const FoodItemBox: React.FC<Props> = ({foodItem}) => {
   const isLoadingDelete = useAppSelector(selectDeleteFoodItemLoading);
   const dispatch = useAppDispatch();
+  const location = useLocation();
+
+  const isAdminPath = location.pathname.includes('/admin/');
+
 
   const isImageValid = (url: string) => {
     const img = new Image();
@@ -40,9 +44,20 @@ const FoodItemBox: React.FC<Props> = ({foodItem}) => {
       <span className="food-title">{foodItem.title}</span>
       <span className="food-price">{foodItem.price}KGS</span>
       <div className="button-container">
-        <Link className="edit-button btn" to={isLoadingDelete ? '/admin' : 'edit/' + foodItem.id}/>
-        <button className="delete-button btn" disabled={isLoadingDelete} onClick={handleDelete}/>
-        <button className="add-button btn" disabled={isLoadingDelete}/>
+        {isAdminPath && (
+          <>
+            <Link
+              className="edit-button btn"
+              to={isLoadingDelete ? '/admin' : 'edit/' + foodItem.id}
+            />
+            <button
+              className="delete-button btn"
+              disabled={isLoadingDelete}
+              onClick={handleDelete}
+            />
+          </>
+        )}
+        {!isAdminPath && <button className="add-button btn" disabled={isLoadingDelete}/>}
       </div>
     </div>
   );

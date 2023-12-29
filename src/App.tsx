@@ -18,6 +18,7 @@ const App = () => {
         <Route path="*" element={(
           <h1 className="not-found-alert">Not found</h1>
         )}/>
+        <Route path="/" element={(<HomePage/>)}/>
       </Routes>
     </>
   );

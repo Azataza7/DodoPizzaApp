@@ -1,11 +1,11 @@
 import React, {useEffect} from 'react';
 import {useAppDispatch, useAppSelector} from '../../app/hooks';
 import {selectFoodItemList, selectFoodItemsLoading} from '../../store/foodItems/foodItemsSlice';
-import {deleteFoodItem, fetchDataItems} from '../../store/foodItems/foodItemsThunks';
+import {fetchDataItems} from '../../store/foodItems/foodItemsThunks';
 import {ApiFoodItems} from '../../types';
 import FoodItemBox from './FoodItemBox';
-import {Link} from 'react-router-dom';
 import Spinner from '../Spinner/Spinner';
+import AdminAddFoodItem from '../../Containers/AdminAddFoodItem/AdminAddFoodItem';
 
 const FoodItemsList = () => {
   const foodCatalog = useAppSelector(selectFoodItemList);
@@ -26,11 +26,8 @@ const FoodItemsList = () => {
 
   return (
     <>
-      <div className="add-new-foodItem-container mb-3">
-        <h3 className="add-new-food-title">Catalog</h3>
-        <Link className="btn btn-light add-food-btn" to="/admin/add-new-food">Add new Food</Link>
-      </div>
-      <div className="food-catalog">
+      <AdminAddFoodItem/>
+      <div className="food-catalog mt-3">
         {foods}
       </div>
     </>
