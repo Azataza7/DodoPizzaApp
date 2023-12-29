@@ -1,7 +1,7 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {RootState} from '../../app/store';
 import {ApiFoodItems} from '../../types';
-import {createDataItem, fetchDataItems, fetchOneFoodItem, updateFoodItem} from './foodItemsThunks';
+import {createDataItem, deleteFoodItem, fetchDataItems, fetchOneFoodItem, updateFoodItem} from './foodItemsThunks';
 
 interface foodItemsState {
   foodItems: ApiFoodItems[];
@@ -10,6 +10,7 @@ interface foodItemsState {
   fetchCreateFoodLoading: boolean;
   OneFoodItemLoading: boolean;
   updateFoodItemLoading: boolean;
+  deleteFoodItemLoading: boolean;
 }
 
 const initialState: foodItemsState = {
@@ -19,6 +20,7 @@ const initialState: foodItemsState = {
   fetchCreateFoodLoading: false,
   OneFoodItemLoading: false,
   updateFoodItemLoading: false,
+  deleteFoodItemLoading: false,
 };
 
 const foodItemsSlice = createSlice({
@@ -68,6 +70,15 @@ const foodItemsSlice = createSlice({
     builder.addCase(updateFoodItem.rejected, (state: foodItemsState) => {
       state.updateFoodItemLoading = false;
     });
+    builder.addCase(deleteFoodItem.pending, (state: foodItemsState) => {
+      state.deleteFoodItemLoading = true;
+    });
+    builder.addCase(deleteFoodItem.fulfilled, (state: foodItemsState) => {
+      state.deleteFoodItemLoading = false;
+    });
+    builder.addCase(deleteFoodItem.rejected, (state: foodItemsState) => {
+      state.deleteFoodItemLoading = false;
+    });
   }
 });
 
@@ -79,3 +90,4 @@ export const selectCreateFoodLoading = (state: RootState) => state.foodItems.fet
 export const selectFoodItemsLoading = (state: RootState) => state.foodItems.fetchFoodItemsLoading;
 export const selectOneFoodItemLoading = (state: RootState) => state.foodItems.OneFoodItemLoading;
 export const selectUpdateFoodItemLoading = (state: RootState) => state.foodItems.updateFoodItemLoading;
+export const selectDeleteFoodItemLoading = (state: RootState) => state.foodItems.deleteFoodItemLoading;

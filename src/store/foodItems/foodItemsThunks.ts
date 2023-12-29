@@ -38,7 +38,7 @@ export const fetchOneFoodItem = createAsyncThunk<ApiFoodItems, string>(
       const response: FoodItemsResponse = await axiosApi.get(`/meals/${id}.json`);
       return response.data;
     } catch (error) {
-      console.log('Error: ', error)
+      console.log('Error: ', error);
     }
   }
 );
@@ -50,11 +50,22 @@ interface updateFoodItemParams {
 
 export const updateFoodItem = createAsyncThunk<void, updateFoodItemParams>(
   'meals/update',
-  async ({ id, data }) => {
+  async ({id, data}) => {
     try {
       await axiosApi.put(`/meals/${id}.json`, data);
     } catch (e) {
-      console.log('Error', e)
+      console.log('Error', e);
+    }
+  }
+);
+
+export const deleteFoodItem = createAsyncThunk<void, string>(
+  'meal/delete',
+  async (id) => {
+    try {
+      await axiosApi.delete(`/meals/${id}.json`);
+    } catch (e) {
+      console.log('Error: ', e)
     }
   }
 );

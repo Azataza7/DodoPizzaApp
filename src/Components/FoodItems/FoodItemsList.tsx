@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {useAppDispatch, useAppSelector} from '../../app/hooks';
 import {selectFoodItemList, selectFoodItemsLoading} from '../../store/foodItems/foodItemsSlice';
-import {fetchDataItems} from '../../store/foodItems/foodItemsThunks';
+import {deleteFoodItem, fetchDataItems} from '../../store/foodItems/foodItemsThunks';
 import {ApiFoodItems} from '../../types';
 import FoodItemBox from './FoodItemBox';
 import {Link} from 'react-router-dom';
@@ -10,14 +10,14 @@ import Spinner from '../Spinner/Spinner';
 const FoodItemsList = () => {
   const foodCatalog = useAppSelector(selectFoodItemList);
   const dispatch = useAppDispatch();
-  const isLoading = useAppSelector(selectFoodItemsLoading)
+  const isLoading = useAppSelector(selectFoodItemsLoading);
 
   useEffect(() => {
     dispatch(fetchDataItems());
   }, [dispatch]);
 
   if (isLoading) {
-    return <Spinner/>
+    return <Spinner/>;
   }
 
   const foods: ApiFoodItems[] | null = foodCatalog.map((foodItem) => (
