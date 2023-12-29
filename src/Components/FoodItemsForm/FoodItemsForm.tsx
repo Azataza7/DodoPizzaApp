@@ -6,18 +6,19 @@ const initialState: FoodItem = {
   title: '',
   image: '',
   price: '',
-}
+};
 
 interface Props {
   onSubmit: (food: FoodItem) => void;
   isLoading: boolean;
+  editingFood: FoodItem | null;
 }
 
-const FoodItemsForm: React.FC<Props> = ({onSubmit, isLoading}) => {
-  const [newFood, setNewFood] = useState<FoodItem>(initialState)
+const FoodItemsForm: React.FC<Props> = ({onSubmit, isLoading, editingFood = initialState}) => {
+  const [newFood, setNewFood] = useState<FoodItem>(editingFood);
 
   const changeFood = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
+    const {name, value} = e.target;
     setNewFood((prev: FoodItem) => ({
       ...prev,
       [name]: value,
@@ -27,10 +28,9 @@ const FoodItemsForm: React.FC<Props> = ({onSubmit, isLoading}) => {
   const onFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (isLoading) return
-
+    if (isLoading) return;
     onSubmit(newFood);
-  }
+  };
 
   return (
     <form onSubmit={onFormSubmit}>

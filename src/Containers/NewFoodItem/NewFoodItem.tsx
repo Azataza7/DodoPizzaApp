@@ -13,7 +13,7 @@ const NewFoodItem: React.FC = () => {
 
   const onSubmit = (newFood: FoodItem) => {
     dispatch(createDataItem(newFood));
-    navigate('/admin/catalog');
+    navigate('/admin/');
   };
 
   return (
